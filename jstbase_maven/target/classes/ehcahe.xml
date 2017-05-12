@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+		 
+	<!-- 磁盘存储的指定路径 -->
+    <!-- <diskStore path="java.io.tmpdir"/> -->		 
+	
+	<!-- default -->
+	<defaultCache
+		maxEntriesLocalHeap="10000"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        overflowToDisk="false"
+	/>
+	
+	<!-- 默认查询缓存区域策略 -->        
+	<cache name="org.hibernate.cache.internal.StandardQueryCache"
+        maxEntriesLocalHeap="10000"
+        eternal="false"
+        timeToIdleSeconds="1800"
+        timeToLiveSeconds="3600"
+        overflowToDisk="false"
+        memoryStoreEvictionPolicy="LRU"
+	/>
+	
+	<!-- 时间戳缓存区域策略 -->        
+	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+        maxEntriesLocalHeap="10000"
+        eternal="false"
+        timeToIdleSeconds="1800"
+        timeToLiveSeconds="3600"
+        overflowToDisk="false"
+        memoryStoreEvictionPolicy="LRU"
+	/>
+        
+	<!-- 字典类型缓存区域策略 -->
+	<cache name="com.jst.common.model.DictType"
+        maxEntriesLocalHeap="10000"
+        eternal="false"
+        timeToIdleSeconds="1800"
+        timeToLiveSeconds="3600"
+        overflowToDisk="false"
+        memoryStoreEvictionPolicy="LRU"
+	/>
+        
+	<!-- 数据字典集合缓存区域策略 -->        
+	<cache name="com.jst.common.model.DictType.sysDicts"
+        maxEntriesLocalHeap="10000"
+        eternal="false"
+        timeToIdleSeconds="1800"
+        timeToLiveSeconds="3600"
+        overflowToDisk="false"
+        memoryStoreEvictionPolicy="LRU"
+	/>
+        
+	<!-- 数据字典缓存区域策略-->
+	<cache name="com.jst.common.model.SysDict"
+        maxEntriesLocalHeap="10000"
+        eternal="false"
+        timeToIdleSeconds="1800"
+        timeToLiveSeconds="3600"
+        overflowToDisk="false"
+        memoryStoreEvictionPolicy="LRU"
+	/>
+</ehcache>
