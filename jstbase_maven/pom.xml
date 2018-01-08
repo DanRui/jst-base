@@ -9,31 +9,31 @@
   <name>jstbase</name>
   <url>http://192.168.0.188:8081/nexus/content/groups/public/</url>
 
-	  <distributionManagement>  
-        <repository>  
-            <id>nexus</id>  
-            <name>Nexus Release Repository</name>  
-            <url>http://192.168.0.188:8081/nexus/content/groups/public/</url>  
-        </repository>  
-        <snapshotRepository>  
-            <id>nexus</id>  
-            <name>Nexus Snapshot Repository</name>  
-            <url>http://192.168.0.188:8081/nexus/content/groups/public/</url>  
-        </snapshotRepository>  
-    </distributionManagement>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus</id>
-			<name>nexus</name>
-			<url>http://192.168.0.188:8081/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+	  <!--<distributionManagement>  -->
+        <!--<repository>  -->
+            <!--<id>nexus</id>  -->
+            <!--<name>Nexus Release Repository</name>  -->
+            <!--<url>http://192.168.0.188:8081/nexus/content/groups/public/</url>  -->
+        <!--</repository>  -->
+        <!--<snapshotRepository>  -->
+            <!--<id>nexus</id>  -->
+            <!--<name>Nexus Snapshot Repository</name>  -->
+            <!--<url>http://192.168.0.188:8081/nexus/content/groups/public/</url>  -->
+        <!--</snapshotRepository>  -->
+    <!--</distributionManagement>-->
+	<!--<pluginRepositories>-->
+		<!--<pluginRepository>-->
+			<!--<id>nexus</id>-->
+			<!--<name>nexus</name>-->
+			<!--<url>http://192.168.0.188:8081/nexus/content/groups/public/</url>-->
+			<!--<releases>-->
+				<!--<enabled>true</enabled>-->
+			<!--</releases>-->
+			<!--<snapshots>-->
+				<!--<enabled>true</enabled>-->
+			<!--</snapshots>-->
+		<!--</pluginRepository>-->
+	<!--</pluginRepositories>-->
 
   <properties>
     <org.springframework-version>4.2.7.RELEASE</org.springframework-version>
@@ -410,4 +410,5 @@
      	<version>2.2</version>
      </dependency>
   </dependencies>
+
 </project>

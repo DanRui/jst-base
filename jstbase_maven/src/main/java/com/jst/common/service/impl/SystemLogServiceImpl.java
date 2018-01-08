@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.annotation.Resource;
 
+import com.jst.common.model.SystemLog;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,8 @@ public class SystemLogServiceImpl extends BaseServiceImpl implements ISystemLogS
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Serializable save(Object model) throws Exception {
 		// TODO Auto-generated method stub
-		return super.save(model);
+		SystemLog systemLog = new SystemLog();
+		BeanUtils.copyProperties(systemLog, model);
+		return super.save(systemLog);
 	}
 }

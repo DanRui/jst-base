@@ -300,7 +300,7 @@ public abstract class HibernateBaseDAO<T> implements BaseDAO<T>{
 		Session session = null;
 		try {
 			session = getSession();
-			session.beginTransaction();
+			//session.beginTransaction();
 			SQLQuery query = session.createSQLQuery(sql);
 
 			if ((paraList != null) && (paraList.size() > 0)) {
@@ -530,9 +530,7 @@ public abstract class HibernateBaseDAO<T> implements BaseDAO<T>{
 	class HibernateHelper{
 	
 	/**
-	 * @see 按属性条件列表创建Criterion数组,辅助函数
-	 *      为了处理ManyToOne或OneToOne的特殊情况，对
-	 *      filters做出了过滤。之前判断有点错误，JP于2016-06-13做了修改
+	 * @see
 	 * @author lee
 	 * @since 2014-08-19
 	 * @param filters
@@ -662,9 +660,7 @@ public abstract class HibernateBaseDAO<T> implements BaseDAO<T>{
 	
 	
 	/**
-	 * @see 此方法解决了实体关联关系为多对一，多方以一方非外键关联字段为查询条件查询时，
-	 *      而导致的Exception:could not resolve property someproperty of some model
-	 *      且同样适用于正常的方式，即在之前的编码基础上做出了适当升级，但仅支持JPA的Annotation
+	 * @see
 	 * @author lee
 	 * @since 2014-08-19
 	 * @param page

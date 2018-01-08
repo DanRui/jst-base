@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import com.jst.common.utils.ConvertRedisUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
@@ -26,7 +27,6 @@ import com.jst.common.model.CacheInfo;
 import com.jst.common.model.DictType;
 import com.jst.common.model.Menu;
 import com.jst.common.model.SysDict;
-import com.jst.common.system.annotation.Cache;
 import com.jst.common.utils.ConvertJsonUtil;
 import com.jst.common.utils.RedisUtil;
 import com.jst.config.ObjectSerializeConfig;
@@ -376,26 +376,26 @@ public class CacheServiceImpl implements CacheService {
 
 	public List<Menu> getMenu() {
 		log.debug("CacheServiceImpl getMenu  start");
+
+		String state = null;
 		try {
-			String key = "MENU_LIST";
-			if(StringUtil.isNotEmpty(RedisUtil.getValue(SYSTEM_MENU, key))){
-				String dictList = RedisUtil.getValue(SYSTEM_MENU, key);
-				Collection c = JSONArray.toCollection(JsonUtil.parseJSONArray(dictList),Menu.class);
-				if(null!=c){
-					return (List<Menu>)c;
-				}
-			}else{
-				log.debug("redis db connect is error");
+			String sysDictStr = RedisUtil.getDictNameByDictValue("MENU_STATE", "VALID");
+			if(StringUtil.isNotEmpty(sysDictStr)){
+				state = ConvertRedisUtil.convertDictType(sysDictStr).getDictCode();
 			}
 		} catch (Exception e) {
-			log.error("CacheServiceImpl getMenu error:"+e,e);
+			log.error("CacheServiceImpl getMenu error:"+e, e);
 		}
 	
-		String state = getSysDictByDictTypeAndCode("STATE", "VALID").getDictValue();
+//		String state = getSysDictByDictTypeAndCode("STATE", "VALID").getDictValue();
 
-		//menuDao.setCacheQueries(true);
+		if (StringUtil.isEmpty(state)) {
+			state = getSysDictByDictTypeAndValue("MENU_STATE", "VALID").getDictCode();
+		}
+
+		menuDao.setCacheQueries(true);
 		// menuDao.setQueryCacheRegion(Menu.class.getName());
-		
+
 		List<Menu> menuList = menuDao.find("from Menu where state = '" + state + "' order by to_number(menuCode), sortId");
 		//menuDao.setCacheQueries(false);
 		log.debug("CacheServiceImpl getMenu end");
