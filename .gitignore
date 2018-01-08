@@ -1,1 +1,4 @@
 .svn/
+.idea/
+target/
+jstbase_maven/target/
